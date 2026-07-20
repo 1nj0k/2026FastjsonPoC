@@ -2,7 +2,7 @@
  
 > 本仓库仅用于授权安全研究、本地复现与防御验证。禁止对未授权目标使用。
 
-## 结论（本仓库已本地复现）
+## 本地复现结论
 
 在 **AutoType 默认关闭** 的前提下，仅调用：
 
@@ -32,7 +32,7 @@ JSON.parse(payload);
 | 环境 | 视具体 gadget | **强依赖 ClassLoader + JDK8** |
 
 
-## 稳定性说明（本地必读）
+## 稳定性说明
 
 1. **完整 RCE 请使用 JDK 8**。JDK 9+ 通常只能打到 SSRF。
 2. harness 默认 `-Dpoc.hostToken=localhost`：  
@@ -46,7 +46,7 @@ JSON.parse(payload);
 6. 压测：`bash scripts/stability-check.sh 20`
 
 
-## 原理（极简）
+## 简易原理
 
 `ParserConfig.checkAutoType` 在 AutoType 关闭时仍会：
 
@@ -220,3 +220,4 @@ java.lang.ClassFormatError: Illegal class name "jar:http://2130706433:18080/prob
 ## 免责声明
 
 本项目用于防御与授权复现。使用者自行承担合规责任。
+本仓库与配套 PoC 仅供授权环境下的安全研究、应急验证与防御建设。擅自对未授权目标进行测试可能违法。使用后果由使用者自行承担。
