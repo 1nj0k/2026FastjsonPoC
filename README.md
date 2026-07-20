@@ -1,6 +1,7 @@
 # Fastjson 1.2.66–1.2.83 JsonType 资源探测纯库 RCE PoC
 
-> **仓库地址：** https://github.com/ThanatosXingYu/2026FastjsonPoC  
+> **本仓库参考于：** [https://github.com/ThanatosXingYu/2026FastjsonPoC  ](https://github.com/wouijvziqy/Fastjson-JsonType-RCE-PoC)。
+> 
 > 仅用于授权安全研究、本地复现与防御验证。禁止对未授权目标使用。
 
 ## 结论（本仓库已本地复现）
