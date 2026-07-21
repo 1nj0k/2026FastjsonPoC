@@ -213,7 +213,8 @@ java.lang.ClassFormatError: Illegal class name "jar:http://2130706433:18080/prob
 
 ## 参考
 
-- 上游研究 harness 思路：https://github.com/wouijvziqy/Fastjson-JsonType-RCE-PoC  
+- 上游研究 harness 思路：https://github.com/wouijvziqy/Fastjson-JsonType-RCE-PoC
+- https://github.com/dinosn/fastjson-jsontype-rce-lab
 - fastjson `ParserConfig.checkAutoType` 中 `@JSONType` 资源探测段  
 - Spring Boot `LaunchedURLClassLoader` / nested jar URL Handler  
 
