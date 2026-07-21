@@ -39,7 +39,7 @@ python3 poc/scan_target.py \
 
 ## 本地全版本 JAR 包
 
-Release 附件 `fastjson-1.2.x-jars-2026.zip` 包含 79 个标准数字版本 JAR：`1.2.0-1.2.62`、`1.2.66-1.2.80`、`1.2.83`，并附带 `SHA256SUMS` 和 `MANIFEST.json`。
+Release 附件 `fastjson-1.2.x-jars-2026.zip` 包含 79 个标准数字版本 JAR：`1.2.0-1.2.62`、`1.2.66-1.2.80`、`1.2.83`，并附带 `SHA256SUMS` 和 `MANIFEST.json`。下载页：[fastjson-1.2.x-jars-2026](https://github.com/ThanatosXingYu/2026FastjsonPoC/releases/tag/fastjson-1.2.x-jars-2026)。
 
 ```bash
 curl -L -o fastjson-1.2.x-jars-2026.zip \
