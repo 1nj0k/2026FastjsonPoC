@@ -1,9 +1,4 @@
-lib/
-target/
-probe.jar
-PWNED2
-*.class
 .DS_Store
-results/
 __pycache__/
-*.log
+.scan-cache/
+scan-output/

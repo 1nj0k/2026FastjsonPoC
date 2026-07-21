@@ -1,2 +1,0 @@
-# Optional helpers only. Core reproduction is pure Java harness.
-# No third-party Python packages required for the default path.
